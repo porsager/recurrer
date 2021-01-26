@@ -1,0 +1,27 @@
+{
+  "name": "recurrer",
+  "version": "0.0.0",
+  "description": "",
+  "type": "module",
+  "module": "./src/index.js",
+  "main": "./cjs/index.js",
+  "exports": {
+    "import": "./src/index.js",
+    "default": "./cjs/index.js"
+  },
+  "scripts": {
+    "build": "node build.cjs",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "src",
+    "cjs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fantestic": "0.0.1",
+    "fastpriorityqueue": "0.6.3"
+  },
+  "devDependencies": {}
+}
