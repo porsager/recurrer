@@ -1,15 +1,15 @@
-import Recurrer from '../src/index.js'
+import Recurrer from '../index.js'
 //import { t } from 'fantestic'
 import recur from 'recur'
 
 const recurrer = Recurrer()
 
 const start = (end) => {
-  p('start - ends at:', end)
+  console.log('start - ends at:', end)
 }
 
 const end = (start) => {
-  p('end - started at:', start)
+  console.log('end - started at:', start)
 }
 
 process.on('uncaughtException', (err) => {
@@ -21,10 +21,10 @@ process.on('uncaughtException', (err) => {
 const a = Date.now()
 recurrer.add(
   recur(
-    'DTSTART:20210125T222000\nDTEND:20210125T222010\nRRULE:FREQ=SECONDLY;INTERVAL=20;COUNT=10000'
+    'DTSTART:20240417T115300\nDTEND:20240417T115310\nRRULE:FREQ=SECONDLY;INTERVAL=20;COUNT=10000'
   ),
   start,
   end
 )
 
-p(Date.now() - a, global.i)
+console.log(Date.now() - a, global.i)

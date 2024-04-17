@@ -1,7 +1,7 @@
-const Queue = require('fastpriorityqueue')
+import Queue from './queue.js'
 
-module.exports = Recurrer;function Recurrer() {
-  const queue = new Queue((a, b) => a.date < b.date)
+export default function Recurrer() {
+  const queue = Queue((a, b) => a.date < b.date)
 
   let timer
 
@@ -44,13 +44,13 @@ module.exports = Recurrer;function Recurrer() {
 
   function run(x) {
     const date = new Date(x.onstart ? x.date : x.date - x.duration)
-    queue.poll()
+    queue.pop()
     addNext(x)
     x.onstart ? x.onstart(date) : x.onend(date)
   }
 
   function remove(fn) {
-    queue.removeOne((x) => x.onstart === fn || x.onend === fn)
+    queue.remove((x) => x.onstart === fn || x.onend === fn)
     check()
   }
 }

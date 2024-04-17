@@ -1,27 +1,37 @@
 {
   "name": "recurrer",
   "version": "0.1.0",
-  "description": "",
+  "description": "Set callbacks for the next recur",
   "type": "module",
-  "module": "./src/index.js",
-  "main": "./cjs/index.js",
-  "exports": {
-    "import": "./src/index.js",
-    "default": "./cjs/index.js"
-  },
-  "scripts": {
-    "build": "node build.cjs",
-    "prepublishOnly": "npm run build"
-  },
+  "main": "index.js",
   "files": [
-    "src",
-    "cjs"
+    "index.js",
+    "queue.js"
   ],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "fantestic": "0.0.1",
-    "fastpriorityqueue": "0.6.3"
+  "scripts": {
+    "test": "node tests/index.js"
   },
-  "devDependencies": {}
+  "author": "Rasmus Porsager <rasmus@porsager.com> (https://www.porsager.com)",
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/porsager"
+  },
+  "repository": "porsager/recurrer",
+  "homepage": "https://github.com/porsager/recurrer",
+  "bugs": "https://github.com/porsager/recurrer/issues",
+  "keywords": [
+    "ical",
+    "rrule",
+    "recur",
+    "recurrer"
+  ],
+  "dependencies": {
+    "fantestic": "0.0.1"
+  },
+  "engines": {
+    "node": ">=12.17"
+  },
+  "devDependencies": {
+    "recur": "0.1.2"
+  }
 }
