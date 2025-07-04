@@ -6,7 +6,12 @@ export default function PriorityQueue(compare = (a, b) => a < b, array = []) {
     remove,
     peek,
     pop,
-    forEach
+    forEach,
+    clear
+  }
+
+  function clear() {
+    array.length = size = 0
   }
 
   function add(x) {
