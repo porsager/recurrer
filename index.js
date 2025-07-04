@@ -8,6 +8,7 @@ export default function Recurrer() {
   return {
     add,
     remove,
+    clear,
     next: (fn) => {
       let result
       queue.forEach(x => {
@@ -15,6 +16,11 @@ export default function Recurrer() {
       })
       return result && result.date
     }
+  }
+
+  function clear() {
+    clearTimeout(timer)
+    queue.clear()
   }
 
   function add(rule, onstart, onend) {
