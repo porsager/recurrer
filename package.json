@@ -1,6 +1,6 @@
 {
   "name": "recurrer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Set callbacks for the next recur",
   "type": "module",
   "main": "index.js",
