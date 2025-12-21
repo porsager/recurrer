@@ -9,6 +9,7 @@ export default function Recurrer() {
     add,
     remove,
     clear,
+    check,
     next: (fn) => {
       let result
       queue.forEach(x => {
@@ -20,16 +21,19 @@ export default function Recurrer() {
 
   function clear() {
     clearTimeout(timer)
+    timer = undefined
     queue.clear()
   }
 
-  function add(rule, onstart, onend) {
-    const duration = rule.utcDuration()
-        , start = onstart && rule.iterator(new Date())
-        , end = onend && duration && rule.iterator(new Date(Date.now() - duration))
+  function add(rule, onstart, onend, past) {
+    const epoch = past ? new Date(past) : new Date()
+        , duration = rule.utcDuration()
+        , start = onstart && rule.iterator(epoch)
+        , end = onend && duration && rule.iterator(new Date(epoch - duration))
 
     start && addNext({ rule, iterator: start, onstart, duration })
     end && addNext({ rule, iterator: end, onend, duration })
+    past || check()
   }
 
   function addNext(x) {
@@ -39,13 +43,25 @@ export default function Recurrer() {
 
     x.date = next.getTime() + (x.onstart ? 0 : x.duration)
     queue.add(x)
-    check()
   }
 
   function check() {
     clearTimeout(timer)
-    const x = queue.peek()
-    x && (timer = setTimeout(run, x.date - Date.now(), x))
+
+    while (true) {
+      const x = queue.peek()
+      if (!x)
+        return
+
+      const diff = x.date - Date.now()
+      if (diff <= 0) {
+        run(x)
+        continue
+      }
+
+      timer = setTimeout(check, diff)
+      return
+    }
   }
 
   function run(x) {
