@@ -9,6 +9,7 @@ export default function Recurrer() {
     add,
     remove,
     clear,
+    queue: queue.array,
     next: (fn) => {
       let result
       queue.forEach(x => {
