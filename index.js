@@ -41,7 +41,7 @@ export default function Recurrer() {
     if (!next)
       return
 
-    x.date = next.getTime() + (x.onstart ? 0 : x.duration)
+    x.date = next + (x.onstart ? 0 : x.duration)
     queue.add(x)
   }
 
